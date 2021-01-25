@@ -1,0 +1,4 @@
+	 - First name of the user
+	 - Last name of the user
+	 - Username
+	 - Group name

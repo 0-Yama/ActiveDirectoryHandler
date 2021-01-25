@@ -4,5 +4,5 @@
 			''                        Active Directory Handler                           ''
 			''                                                                           ''
 			'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-			Created by OYama_                                    Version 0.4.6 - 01/22/2021
+			Created by OYama_                                                 Version 0.4.7
 

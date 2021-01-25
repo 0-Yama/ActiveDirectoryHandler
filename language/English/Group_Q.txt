@@ -1,0 +1,7 @@
+	 - Local Domain
+	 - Global
+	 - Universal
+	 - Name of the group
+	 - Name of the group to add
+	 - Name of the target group
+	 - Name of the group to remove

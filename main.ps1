@@ -1,4 +1,4 @@
-﻿# version 0.4.5
+﻿# version 0.4.7
 # Auteur : OYama_
 
 # Force le type d'execution
@@ -13,12 +13,12 @@ $Language       = ''
 $Selection      = 0
 $SelectionColor = 'Yellow'
 $Header         = "","
-`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''",
+ `t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''",
 "`t`t`t''                                                                           ''",
 "`t`t`t''                               Initialization                              ''",
 "`t`t`t''                                                                           ''",
 "`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''",
-"`t`t`tCreated by OYama_                                    Version 0.4.5 - 01/22/2021`n`n"
+"`t`t`tCreated by OYama_                                                 Version 0.4.6`n`n"
 
 # Fonction de Menu
 function Menu-ShowList ($List)
@@ -190,9 +190,14 @@ function Sel-Language
 function Add-User
 {
     clear
-    
-    $FisrtName = Read-Host -Prompt "Prénom de l'utilisateur"
-    $LastName = Read-Host -Prompt "Nom de l'utilisateur"
+    $Header
+
+
+    $Question = Get-Content -Path .\language\$Language\User_Q.txt
+
+    $FisrtName = Read-Host -Prompt $Question[0]
+    $LastName = Read-Host -Prompt $Question[1]
+
     $FullName = $FisrtName + " " + $LastName
 
     $Username = $FisrtName.Substring(0,1) + "_" + $LastName
@@ -216,8 +221,13 @@ function Add-User
 function Add-UserToGroup
 {
     clear
-    $Username = Read-Host -Prompt "Nom d'utilisateur"
-    $Group = Read-Host -Prompt "Nom du groupe cible"
+    $Header
+
+
+    $Question = Get-Content -Path .\language\$Language\User_Q.txt
+
+    $Username = Read-Host -Prompt $Question[2]
+    $Group = Read-Host -Prompt $Question[3]
     Add-ADGroupMember  -Identity $Group -Members $Username 
     pause
 }
@@ -227,15 +237,25 @@ function Add-UserToGroup
 function Rem-User
 {
     clear
-    $Username = Read-Host -Prompt "Nom d'utilisateur"
+    $Header
+
+
+    $Question = Get-Content -Path .\language\$Language\User_Q.txt
+
+    $Username = Read-Host -Prompt $Question[2]
     Remove-ADUser -Identity $Username
 }
 
 function Rem-UserFromGroup
 {
     clear
-    $Username = Read-Host -Prompt "Nom d'utilisateur"
-    $Group = Read-Host -Prompt "Nom du groupe cible"
+    $Header
+
+
+    $Question = Get-Content -Path .\language\$Language\User_Q.txt
+
+    $Username = Read-Host -Prompt $Question[2]
+    $Group = Read-Host -Prompt $Question[3]
     Remove-ADGroupMember  -Identity $Group -Members $Username 
 }
 
@@ -252,10 +272,12 @@ function Mov-User-OU
 function Add-Group
 {
     clear
-    $MenuList = @(
-                "`t 0 - Domaine Locale`n",
-                "`t 1 - Global`n",
-                "`t 2 - Universel`n")
+    $Header
+
+
+    $Question = Get-Content -Path .\language\$Language\Group_Q.txt
+
+    $MenuList = @($Question[0..2])
 
     Menu-ShowList($MenuList)
 
@@ -274,7 +296,10 @@ function Add-Group
     elseif($keyPress -eq [ConsoleKey]::Enter)
     {
         clear
-        $GroupName = Read-Host -Prompt "Nom du groupe"
+        $Header
+
+
+        $GroupName = Read-Host -Prompt $Question[3]
 
         New-ADGroup -Name $GroupName -GroupScope $Selection
         break
@@ -286,8 +311,13 @@ function Add-Group
 function Add-GrouptoGroup
 {
     clear
-    $GroupToAdd = Read-Host -Prompt "Nom du groupe à ajouter"
-    $GroupDest = Read-Host -Prompt "Nom du groupe cible"
+    $Header
+
+
+    $Question = Get-Content -Path .\language\$Language\Group_Q.txt
+
+    $GroupToAdd = Read-Host -Prompt $Question[4]
+    $GroupDest = Read-Host -Prompt $Question[5]
     Add-ADGroupMember  -Identity $GroupDest -Members $GroupToAdd 
     pause
 }
@@ -296,15 +326,25 @@ function Add-GrouptoGroup
 function Rem-Group
 {
     clear
-    $GroupName = Read-Host -Prompt "Nom du groupe" 
+    $Header
+
+
+    $Question = Get-Content -Path .\language\$Language\Group_Q.txt
+
+    $GroupName = Read-Host -Prompt $Question[3] 
     Remove-ADGroup -Identity $GroupName
 }
 
 function Rem-GroupfromGroup
 {
     clear
-    $GroupToAdd = Read-Host -Prompt "Nom d'utilisateur"
-    $GroupDest = Read-Host -Prompt "Nom du groupe cible"
+    $Header
+
+
+    $Question = Get-Content -Path .\language\$Language\Group_Q.txt
+
+    $GroupToAdd = Read-Host -Prompt $Question[4]
+    $GroupDest = Read-Host -Prompt $Question[6]
     Remove-ADGroupMember  -Identity $GroupDest -Members $GroupToAdd 
 }
 
