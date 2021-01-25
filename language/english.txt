@@ -1,0 +1,40 @@
+`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+`t`t`t''                                                                           ''
+`t`t`t''                        Active Directory Handler                           ''
+`t`t`t''                                                                           ''
+`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+`t`t`tCreated by OYama_                                    Version 0.4.5 - 01/22/2021`n`n
+`t - Manage Users`n
+`t - Manage Groups`n
+`t - Manage Organisations Units`n
+`t - Settings
+`t - Exit
+`t - Languages
+`t - Selection Color
+`t - Back
+`t - Blue
+`t - Red
+`t - Yellow
+`t - Black
+`t - Back
+`t - Create an user`n
+`t - Delete an user`n
+`t - Add an user in a group`n
+`t - Remove an user from a group`n
+`t - Change the Organisation Units of an user WIP`n
+`t - Back
+`t - Create a group`n
+`t - Delete a group`n
+`t - Add a group in group`n
+`t - Remove a group from a group`n
+`t - Change the Organisation units for a group WIP`n
+`t - Back
+`t - Create an Organisations Units
+`t - Delete an Organisations Units`n
+`t - Back
+`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+`t`t`t''                                                                           ''
+`t`t`t''                               Good Bye                                    ''
+`t`t`t''                                                                           ''
+`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+`t`t`tCreated by OYama_                                    Version 0.4.5 - 01/22/2021`n`n

@@ -1,5 +1,5 @@
-﻿# version 1.0
-# Auteur : Lylian Levoyes
+﻿# version 0.4.5
+# Auteur : OYama_
 
 # Force le type d'execution
 Set-ExecutionPolicy Unrestricted
@@ -43,7 +43,7 @@ function Menu-Main
     $MenuList = @(
                     "`t - Gérer les utilisateurs`n",
                     "`t - Gérer les groupes`n",
-                    "`t - Gérer les unités d'organisations`n",
+                    "`t - Gérer les unités d'organisations`n"
                     "`t - Sortir"
                   )
     Menu-ShowList($MenuList)

@@ -1,0 +1,40 @@
+`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+`t`t`t''                                                                           ''
+`t`t`t''                 Gestionnaires de l'Active Directory                       ''
+`t`t`t''                                                                           ''
+`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+`t`t`tCréé par OYama_                                      Version 0.4.5 - 01/22/2021`n`n
+`t - Gérer les utilisateurs`n
+`t - Gérer les groupes`n
+`t - Gérer les unités d'organisations`n
+`t - Paramètres
+`t - Sortir
+`t - Langues
+`t - Couleur élément sélectioné
+`t - Retour
+`t - Bleu
+`t - Rouge
+`t - Jaune
+`t - Noir
+`t - Retour
+`t - Créer un utilisateur`n
+`t - Suprimer un utilisateur`n
+`t - Ajouter un utilisateur a un groupe`n
+`t - Suprimer un utilisateur d'un groupe`n
+`t - Changer un utilisateur d'unité d'organisation WIP`n
+`t - Retour
+`t - Créer un groupe`n
+`t - Suprimer un groupe`n
+`t - Ajouter un gourpe à un groupe`n
+`t - Suprimer un groupe d'un groupe`n
+`t - Changer un groupe d'unité d'organisation WIP`n
+`t - Retour
+`t - Créer une unité d'organisation`n
+`t - Suprimer une unité d'organisation`n
+`t - Retour
+`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+`t`t`t''                                                                           ''
+`t`t`t''                               Au Revoir                                   ''
+`t`t`t''                                                                           ''
+`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+`t`t`tCréé par OYama_                                      Version 0.4.5 - 01/22/2021`n`n
