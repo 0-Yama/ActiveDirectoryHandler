@@ -1,0 +1,6 @@
+	 - Create an user
+	 - Delete an user
+	 - Add an user in a group
+	 - Remove an user from a group
+	 - Change the Organisation Units of an user [WIP]
+	 - Back

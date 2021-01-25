@@ -9,22 +9,25 @@ Import-Module ActiveDirectory
 
 # Variable Globale
 
+$Language       = ''
 $Selection      = 0
 $SelectionColor = 'Yellow'
-$Header         = "
-`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-`t`t`t''                                                                           ''
-`t`t`t''                 Gestionnaires de l'Active Directory                       ''
-`t`t`t''                                                                           ''
-`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-`t`t`tCréé par OYama_                                      Version 0.4.5 - 01/22/2021`n`n
+$Header         = "","
+`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''",
+"`t`t`t''                                                                           ''",
+"`t`t`t''                               Initialization                              ''",
+"`t`t`t''                                                                           ''",
+"`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''",
+"`t`t`tCreated by OYama_                                    Version 0.4.5 - 01/22/2021`n`n"
 
-"
 # Fonction de Menu
 function Menu-ShowList ($List)
 {
     clear
-    Write-Host -Object $Header
+    for($i=0; $i -le $Header.Length; $i++)
+    {
+        Write-Host -Object $Header[$i]
+    }
     for($i=0; $i -le $List.Length; $i++)
     {
         if($Selection -eq $i)
@@ -34,18 +37,14 @@ function Menu-ShowList ($List)
         {
             Write-Host -Object $List[$i]
         }
+        Write-Host -Object ""
     }
 
 }
 
 function Menu-Main
 {
-    $MenuList = @(
-                    "`t - Gérer les utilisateurs`n",
-                    "`t - Gérer les groupes`n",
-                    "`t - Gérer les unités d'organisations`n"
-                    "`t - Sortir"
-                  )
+    $MenuList = Get-Content -Path .\language\$Language\Main_Menu.txt
     Menu-ShowList($MenuList)
     do
     {
@@ -74,14 +73,7 @@ function Menu-Main
 
 function Menu-User
 {
-   $MenuList = @(
-                    "`t - Créer un utilisateur`n"
-                    "`t - Suprimer un utilisateur`n"
-                    "`t - Ajouter un utilisateur a un groupe`n"
-                    "`t - Suprimer un utilisateur d'un groupe`n"
-                    "`t - Changer un utilisateur d'unité d'organisation WIP`n"
-                    "`t - Retour"
-                  )
+   $MenuList = Get-Content -Path .\language\$Language\User_Menu.txt
     Menu-ShowList($MenuList)
     do
     {
@@ -112,14 +104,7 @@ function Menu-User
 
 function Menu-Group
 {
-   $MenuList = @(
-                    "`t - Créer un groupe`n"
-                    "`t - Suprimer un groupe`n"
-                    "`t - Ajouter un gourpe à un groupe`n"
-                    "`t - Suprimer un groupe d'un groupe`n"
-                    "`t - Changer un groupe d'unité d'organisation WIP`n"
-                    "`t - Retour"
-                  )
+   $MenuList = Get-Content -Path .\language\$Language\Group_Menu.txt
     Menu-ShowList($MenuList)
     do
     {
@@ -157,22 +142,48 @@ function Menu-OU
 # Fonction général
 function Startup
 {
+    
+    $Language = Sel-Language
+    $Header = Get-Content -Path .\language\$Language\Header.txt
     Menu-Main
 }
 
 function Close-App
 {
     clear
-    "
-    `t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    `t`t`t''                                                                           ''
-    `t`t`t''                               Au Revoir                                   ''
-    `t`t`t''                                                                           ''
-    `t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    "
+    Get-Content -Path .\language\$Language\Exit.txt
     exit
 }
 
+function Sel-Language
+{
+    $MenuList = Get-Content -Path .\language\list.txt
+    Menu-ShowList($MenuList)
+
+    do
+    {
+        $keyPress = [Console]::ReadKey($true).Key
+    } until($keyPress -eq [ConsoleKey]::DownArrow -or $keyPress -eq [ConsoleKey]::UpArrow-or $keyPress -eq [ConsoleKey]::Enter)
+
+    if($keyPress -eq [ConsoleKey]::DownArrow)
+    {
+        $Selection = ($Selection + 1) % $MenuList.Length
+        Sel-Language
+    }elseif($keyPress -eq [ConsoleKey]::UpArrow)
+    {
+        $Selection = ($Selection + $MenuList.Length - 1) % $MenuList.Length
+        Sel-Language
+    }
+    elseif($keyPress -eq [ConsoleKey]::Enter)
+    {
+        Switch($Selection)
+        {
+            0{$Selection=0; return 'French'}
+            1{$Selection=0; return 'English'}
+        }
+    }
+    
+}
 # Fonction gestion utilisateurs
 
 # Add-
@@ -302,7 +313,6 @@ function Mov-Group-OU
 {
 
 }
-
 
 
 # Startup
