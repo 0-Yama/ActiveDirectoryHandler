@@ -1,4 +1,4 @@
-﻿# version 0.4.7
+﻿# version 0.5.0
 # Auteur : OYama_
 
 # Force le type d'execution
@@ -8,6 +8,7 @@ Set-ExecutionPolicy Unrestricted
 Import-Module ActiveDirectory
 
 # Variable Globale
+$Version = "Version 0.5.0"
 
 $Language       = ''
 $Selection      = 0
@@ -18,7 +19,7 @@ $Header         = "","
 "`t`t`t''                               Initialization                              ''",
 "`t`t`t''                                                                           ''",
 "`t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''",
-"`t`t`tCreated by OYama_                                                 Version 0.4.6`n`n"
+"`t`t`tCreated by OYama_                                                 $Version`n`n"
 
 # Fonction de Menu
 function Menu-ShowList ($List)
@@ -124,10 +125,7 @@ function Menu-Group
         {
             0{$Selection=0; Add-Group}
             1{$Selection=0; Rem-Group}
-            2{$Selection=0; Add-GrouptoGroup}
-            3{$Selection=0; Rem-GroupfromGroup}
-            4{$Selection=0; Mov-Group-OU}
-            5{$Selection=0; Menu-Main}
+            3{$Selection=0; Menu-Main}
         }
     }
     Menu-Group
@@ -135,7 +133,30 @@ function Menu-Group
 
 function Menu-OU
 {
+   $MenuList = Get-Content -Path .\language\$Language\OU_Menu.txt
+    Menu-ShowList($MenuList)
+    do
+    {
+        $keyPress = [Console]::ReadKey($true).Key
+    } until($keyPress -eq [ConsoleKey]::DownArrow -or $keyPress -eq [ConsoleKey]::UpArrow-or $keyPress -eq [ConsoleKey]::Enter)
 
+    if($keyPress -eq [ConsoleKey]::DownArrow)
+    {
+        $Selection = ($Selection + 1) % $MenuList.Length
+    }elseif($keyPress -eq [ConsoleKey]::UpArrow)
+    {
+        $Selection = ($Selection + $MenuList.Length - 1) % $MenuList.Length
+    }
+    elseif($keyPress -eq [ConsoleKey]::Enter)
+    {
+        Switch($Selection)
+        {
+            0{$Selection=0; Add-OU}
+            1{$Selection=0; Rem-OU}
+            2{$Selection=0; Menu-Main}
+        }
+    }
+    Menu-OU
 }
 
 
@@ -145,6 +166,7 @@ function Startup
     
     $Language = Sel-Language
     $Header = Get-Content -Path .\language\$Language\Header.txt
+    $Header[-2] = $Header[-2] + $Version
     Menu-Main
 }
 
@@ -352,6 +374,36 @@ function Rem-GroupfromGroup
 function Mov-Group-OU
 {
 
+}
+
+# Fonction gestion des groupes
+
+# Add-
+function Add-OU
+{
+    clear
+    $Header
+
+
+    $Question = Get-Content -Path .\language\$Language\OU_Q.txt
+    $OUName = Read-Host -Prompt $Question
+
+    New-ADOrganizationalUnit -Name $OUName -ProtectedFromAccidentalDeletion $False
+}
+
+
+
+# Rem-
+function Rem-OU
+{
+    clear
+    $Header
+
+
+    $Question = Get-Content -Path .\language\$Language\OU_Q.txt
+
+    $OUName = Read-Host -Prompt $Question 
+    Remove-ADOrganizationalUnit -Identity "OU=$OUName,DC=OYAMA,DC=LOCAL" -Recursive
 }
 
 

@@ -4,5 +4,5 @@
 			''                 Gestionnaires de l'Active Directory                       ''
 			''                                                                           ''
 			'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-			Créé par OYama_                                                   Version 0.4.7
+			Créé par OYama_                                                   
 
