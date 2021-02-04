@@ -1,4 +1,4 @@
-﻿# version 0.5.0
+﻿# version 0.5.5
 # Auteur : OYama_
 
 # Force le type d'execution
@@ -8,11 +8,11 @@ Set-ExecutionPolicy Unrestricted
 Import-Module ActiveDirectory
 
 # Variable Globale
-$Version = "Version 0.5.0"
+$Version = "Version 0.5.5"
 
 $Language       = ''
 $Selection      = 0
-$SelectionColor = 'Yellow'
+$SelectionColor = 'Red'
 $Header         = "","
  `t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''",
 "`t`t`t''                                                                           ''",
@@ -125,7 +125,10 @@ function Menu-Group
         {
             0{$Selection=0; Add-Group}
             1{$Selection=0; Rem-Group}
-            3{$Selection=0; Menu-Main}
+            2{$Selection=0; Add-GrouptoGroup}
+            3{$Selection=0; Rem-GroupfromGroup}
+            4{$Selection=0; Mov-Group-OU}
+            5{$Selection=0; Menu-Main}
         }
     }
     Menu-Group
@@ -174,6 +177,7 @@ function Close-App
 {
     clear
     Get-Content -Path .\language\$Language\Exit.txt
+    pause
     exit
 }
 
@@ -202,6 +206,7 @@ function Sel-Language
         {
             0{$Selection=0; return 'French'}
             1{$Selection=0; return 'English'}
+            2{$Selection=0; return 'Spanish'}
         }
     }
     
@@ -285,7 +290,16 @@ function Rem-UserFromGroup
 # Mov-
 function Mov-User-OU
 {
+    clear
+    $Header
 
+
+    $Question = Get-Content -Path .\language\$Language\User_Q.txt
+
+    $Username = Read-Host -Prompt $Question[2]
+    $OU = Read-Host -Prompt $Question[4]
+
+    Get-ADUser $Username| Move-ADObject -TargetPath "OU=$OU,DC=oyama,DC=local"
 }
 
 # Fonction gestion des groupes

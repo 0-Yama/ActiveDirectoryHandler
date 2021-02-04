@@ -2,5 +2,5 @@
 	 - Suprimer un utilisateur
 	 - Ajouter un utilisateur a un groupe
 	 - Suprimer un utilisateur d'un groupe
-	 - Changer un utilisateur d'unité d'organisation WIP
+	 - Changer un utilisateur d'unité d'organisation
 	 - Retour

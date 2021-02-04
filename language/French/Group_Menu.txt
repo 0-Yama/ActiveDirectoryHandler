@@ -2,5 +2,5 @@
 	 - Suprimer un groupe
 	 - Ajouter un gourpe à un groupe
 	 - Suprimer un groupe d'un groupe
-	 - Changer un groupe d'unité d'organisation WIP
+	 - Changer un groupe d'unité d'organisation
 	 - Retour
