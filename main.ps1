@@ -1,4 +1,4 @@
-﻿# version 0.5.5
+﻿# version 0.5.6
 # Auteur : OYama_
 
 # Force le type d'execution
@@ -8,12 +8,12 @@ Set-ExecutionPolicy Unrestricted
 Import-Module ActiveDirectory
 
 # Variable Globale
-$Version = "Version 0.5.5"
+$Version = "Version 0.5.6"
 
 $Language       = ''
 $Selection      = 0
-$SelectionColor = 'Red'
-$Header         = "","
+$SelectionColor = Get-Content -Path .\select.color
+$Header         = "
  `t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''",
 "`t`t`t''                                                                           ''",
 "`t`t`t''                               Initialization                              ''",
@@ -25,6 +25,7 @@ $Header         = "","
 function Menu-ShowList ($List)
 {
     clear
+    Write-Host -Object " "
     for($i=0; $i -le $Header.Length; $i++)
     {
         Write-Host -Object $Header[$i]
@@ -66,15 +67,50 @@ function Menu-Main
             0{$Selection=0; Menu-User}
             1{$Selection=0; Menu-Group}
             2{$Selection=0; Menu-OU}
-            3{Close-App}
+            3{$Selection=0; Menu-Color}
+            4{Close-App}
         }
     }
     Menu-Main
 }
 
+function Menu-Color
+{
+    $MenuList = Get-Content -Path .\language\$Language\Color_Menu.txt
+    Menu-ShowList($MenuList)
+    do
+    {
+        $keyPress = [Console]::ReadKey($true).Key
+    } until($keyPress -eq [ConsoleKey]::DownArrow -or $keyPress -eq [ConsoleKey]::UpArrow-or $keyPress -eq [ConsoleKey]::Enter)
+
+    if($keyPress -eq [ConsoleKey]::DownArrow)
+    {
+        $Selection = ($Selection + 1) % $MenuList.Length
+
+    }elseif($keyPress -eq [ConsoleKey]::UpArrow)
+    {
+        $Selection = ($Selection + $MenuList.Length - 1) % $MenuList.Length
+    }
+    elseif($keyPress -eq [ConsoleKey]::Enter)
+    {
+        Set-Content -Path .\select.color -Value $SelectionColor
+        $Selection = 0
+        Menu-Main
+    }
+    Switch($Selection)
+    {
+        0{$SelectionColor = "Green"}
+        1{$SelectionColor = "Cyan"}
+        2{$SelectionColor = "Magenta"}
+        3{$SelectionColor = "Yellow"}
+    }
+    
+    Menu-Color
+}
+
 function Menu-User
 {
-   $MenuList = Get-Content -Path .\language\$Language\User_Menu.txt
+    $MenuList = Get-Content -Path .\language\$Language\User_Menu.txt
     Menu-ShowList($MenuList)
     do
     {
@@ -165,8 +201,7 @@ function Menu-OU
 
 # Fonction général
 function Startup
-{
-    
+{    
     $Language = Sel-Language
     $Header = Get-Content -Path .\language\$Language\Header.txt
     $Header[-2] = $Header[-2] + $Version
@@ -177,7 +212,6 @@ function Close-App
 {
     clear
     Get-Content -Path .\language\$Language\Exit.txt
-    pause
     exit
 }
 

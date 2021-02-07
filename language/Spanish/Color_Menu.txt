@@ -1,0 +1,4 @@
+	 - Verde
+	 - Cian
+	 - Magenta
+	 - Amarillo
