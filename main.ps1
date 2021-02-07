@@ -1,4 +1,4 @@
-﻿# version 0.5.6
+﻿# version 0.5.7
 # Auteur : OYama_
 
 # Force le type d'execution
@@ -8,11 +8,12 @@ Set-ExecutionPolicy Unrestricted
 Import-Module ActiveDirectory
 
 # Variable Globale
-$Version = "Version 0.5.6"
+$Version = "Version 0.5.7"
 
 $Language       = ''
 $Selection      = 0
 $SelectionColor = Get-Content -Path .\select.color
+$Domain         = ""
 $Header         = "
  `t`t`t'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''",
 "`t`t`t''                                                                           ''",
@@ -205,6 +206,7 @@ function Startup
     $Language = Sel-Language
     $Header = Get-Content -Path .\language\$Language\Header.txt
     $Header[-2] = $Header[-2] + $Version
+    $Domain = Get-Domain
     Menu-Main
 }
 
@@ -213,6 +215,21 @@ function Close-App
     clear
     Get-Content -Path .\language\$Language\Exit.txt
     exit
+}
+
+function Get-Domain
+{
+    clear
+    for($i=0; $i -le $Header.Length; $i++)
+    {
+        Write-Host -Object $Header[$i]
+    }
+    $DomainInput = Read-Host -Prompt "`t - Write you Domain name"
+
+    $DomainSplit = $DomainInput.Split(".")
+
+    return "DC=" + $DomainSplit[0] + ",DC=" + $DomainSplit[1]
+
 }
 
 function Sel-Language
@@ -332,8 +349,8 @@ function Mov-User-OU
 
     $Username = Read-Host -Prompt $Question[2]
     $OU = Read-Host -Prompt $Question[4]
-
-    Get-ADUser $Username| Move-ADObject -TargetPath "OU=$OU,DC=oyama,DC=local"
+    
+    Get-ADUser $Username| Move-ADObject -TargetPath "OU=$OU,$Domain"
 }
 
 # Fonction gestion des groupes
@@ -451,7 +468,7 @@ function Rem-OU
     $Question = Get-Content -Path .\language\$Language\OU_Q.txt
 
     $OUName = Read-Host -Prompt $Question 
-    Remove-ADOrganizationalUnit -Identity "OU=$OUName,DC=OYAMA,DC=LOCAL" -Recursive
+    Remove-ADOrganizationalUnit -Identity "OU=$OUName,$Domain" -Recursive
 }
 
 
