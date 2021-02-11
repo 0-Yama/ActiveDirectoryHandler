@@ -1,7 +1,0 @@
-	 - Dominio Local
-	 - Global
-	 - Universal
-	 - Nombre del grupo
-	 - Nombre del grupo para agregar
-	 - Nombre del grupo objetivo
-	 - Nombre del grupo para eliminar

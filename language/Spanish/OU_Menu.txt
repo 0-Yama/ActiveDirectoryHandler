@@ -1,3 +1,0 @@
-	 - Crea una unidad organizativa
-	 - Eliminar una unidad organizativa
-	 - Regreso

@@ -1,6 +1,0 @@
-	 - Crear un usuario
-	 - Eliminar un usuario
-	 - Agregar un usuario a un grupo
-	 - Eliminar un usuario de un grupo
-	 - Cambiar un usuario de unidad organizativa WIP
-	 - Regreso

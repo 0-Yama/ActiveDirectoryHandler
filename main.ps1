@@ -47,7 +47,7 @@ function Menu-ShowList ($List)
 
 function Menu-Main
 {
-    $MenuList = Get-Content -Path .\language\$Language\Main_Menu.txt
+    $MenuList = Get-Content -Path .\language\$Language\Main_Menu.display
     Menu-ShowList($MenuList)
     do
     {
@@ -77,7 +77,7 @@ function Menu-Main
 
 function Menu-Color
 {
-    $MenuList = Get-Content -Path .\language\$Language\Color_Menu.txt
+    $MenuList = Get-Content -Path .\language\$Language\Color_Menu.display
     Menu-ShowList($MenuList)
     do
     {
@@ -111,7 +111,7 @@ function Menu-Color
 
 function Menu-User
 {
-    $MenuList = Get-Content -Path .\language\$Language\User_Menu.txt
+    $MenuList = Get-Content -Path .\language\$Language\User_Menu.display
     Menu-ShowList($MenuList)
     do
     {
@@ -142,7 +142,7 @@ function Menu-User
 
 function Menu-Group
 {
-   $MenuList = Get-Content -Path .\language\$Language\Group_Menu.txt
+   $MenuList = Get-Content -Path .\language\$Language\Group_Menu.display
     Menu-ShowList($MenuList)
     do
     {
@@ -173,7 +173,7 @@ function Menu-Group
 
 function Menu-OU
 {
-   $MenuList = Get-Content -Path .\language\$Language\OU_Menu.txt
+   $MenuList = Get-Content -Path .\language\$Language\OU_Menu.display
     Menu-ShowList($MenuList)
     do
     {
@@ -204,7 +204,7 @@ function Menu-OU
 function Startup
 {    
     $Language = Sel-Language
-    $Header = Get-Content -Path .\language\$Language\Header.txt
+    $Header = Get-Content -Path .\language\$Language\Header.display
     $Header[-2] = $Header[-2] + $Version
     $Domain = Get-Domain
     Menu-Main
@@ -213,7 +213,7 @@ function Startup
 function Close-App
 {
     clear
-    Get-Content -Path .\language\$Language\Exit.txt
+    Get-Content -Path .\language\$Language\Exit.display
     exit
 }
 
@@ -234,7 +234,7 @@ function Get-Domain
 
 function Sel-Language
 {
-    $MenuList = Get-Content -Path .\language\list.txt
+    $MenuList = Get-Content -Path .\language\lang.list
     Menu-ShowList($MenuList)
 
     do
@@ -262,6 +262,14 @@ function Sel-Language
     }
     
 }
+
+# Fonction création de partage
+
+function Add-Share
+{
+
+}
+
 # Fonction gestion utilisateurs
 
 # Add-
@@ -271,7 +279,7 @@ function Add-User
     $Header
 
 
-    $Question = Get-Content -Path .\language\$Language\User_Q.txt
+    $Question = Get-Content -Path .\language\$Language\User_Q.display
 
     $FisrtName = Read-Host -Prompt $Question[0]
     $LastName = Read-Host -Prompt $Question[1]
@@ -302,7 +310,7 @@ function Add-UserToGroup
     $Header
 
 
-    $Question = Get-Content -Path .\language\$Language\User_Q.txt
+    $Question = Get-Content -Path .\language\$Language\User_Q.display
 
     $Username = Read-Host -Prompt $Question[2]
     $Group = Read-Host -Prompt $Question[3]
@@ -318,7 +326,7 @@ function Rem-User
     $Header
 
 
-    $Question = Get-Content -Path .\language\$Language\User_Q.txt
+    $Question = Get-Content -Path .\language\$Language\User_Q.display
 
     $Username = Read-Host -Prompt $Question[2]
     Remove-ADUser -Identity $Username
@@ -330,7 +338,7 @@ function Rem-UserFromGroup
     $Header
 
 
-    $Question = Get-Content -Path .\language\$Language\User_Q.txt
+    $Question = Get-Content -Path .\language\$Language\User_Q.display
 
     $Username = Read-Host -Prompt $Question[2]
     $Group = Read-Host -Prompt $Question[3]
@@ -345,7 +353,7 @@ function Mov-User-OU
     $Header
 
 
-    $Question = Get-Content -Path .\language\$Language\User_Q.txt
+    $Question = Get-Content -Path .\language\$Language\User_Q.display
 
     $Username = Read-Host -Prompt $Question[2]
     $OU = Read-Host -Prompt $Question[4]
@@ -362,7 +370,7 @@ function Add-Group
     $Header
 
 
-    $Question = Get-Content -Path .\language\$Language\Group_Q.txt
+    $Question = Get-Content -Path .\language\$Language\Group_Q.display
 
     $MenuList = @($Question[0..2])
 
@@ -401,7 +409,7 @@ function Add-GrouptoGroup
     $Header
 
 
-    $Question = Get-Content -Path .\language\$Language\Group_Q.txt
+    $Question = Get-Content -Path .\language\$Language\Group_Q.display
 
     $GroupToAdd = Read-Host -Prompt $Question[4]
     $GroupDest = Read-Host -Prompt $Question[5]
@@ -416,7 +424,7 @@ function Rem-Group
     $Header
 
 
-    $Question = Get-Content -Path .\language\$Language\Group_Q.txt
+    $Question = Get-Content -Path .\language\$Language\Group_Q.display
 
     $GroupName = Read-Host -Prompt $Question[3] 
     Remove-ADGroup -Identity $GroupName
@@ -428,7 +436,7 @@ function Rem-GroupfromGroup
     $Header
 
 
-    $Question = Get-Content -Path .\language\$Language\Group_Q.txt
+    $Question = Get-Content -Path .\language\$Language\Group_Q.display
 
     $GroupToAdd = Read-Host -Prompt $Question[4]
     $GroupDest = Read-Host -Prompt $Question[6]
@@ -450,7 +458,7 @@ function Add-OU
     $Header
 
 
-    $Question = Get-Content -Path .\language\$Language\OU_Q.txt
+    $Question = Get-Content -Path .\language\$Language\OU_Q.display
     $OUName = Read-Host -Prompt $Question
 
     New-ADOrganizationalUnit -Name $OUName -ProtectedFromAccidentalDeletion $False
@@ -465,7 +473,7 @@ function Rem-OU
     $Header
 
 
-    $Question = Get-Content -Path .\language\$Language\OU_Q.txt
+    $Question = Get-Content -Path .\language\$Language\OU_Q.display
 
     $OUName = Read-Host -Prompt $Question 
     Remove-ADOrganizationalUnit -Identity "OU=$OUName,$Domain" -Recursive

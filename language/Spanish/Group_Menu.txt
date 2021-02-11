@@ -1,6 +1,0 @@
-	 - Crear un grupo
-	 - Eliminar un grupo
-	 - Agregar un grupo a un grupo
-	 - Eliminar un grupo de un grupo
-	 - Cambiar un grupo de unidad organizativa WIP
-	 - Regreso

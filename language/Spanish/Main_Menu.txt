@@ -1,5 +1,0 @@
-	 - Gestionar usuarios
-	 - Gestionar grupos
-	 - Gestionar unidades organizativas
-	 - Cambiar el color
-	 - Salir

@@ -1,4 +1,0 @@
-	 - Green
-	 - Cyan
-	 - Magenta
-	 - Yellow

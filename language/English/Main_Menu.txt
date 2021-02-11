@@ -1,5 +1,0 @@
-	 - Manage Users
-	 - Manage Groups
-	 - Manage Organisations Units
-	 - Change Color
-	 - Exit
