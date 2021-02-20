@@ -1,4 +1,4 @@
-﻿# version 0.5.8
+﻿# version 0.5.9
 # Auteur : OYama_
 
 # Force le type d'execution
@@ -8,7 +8,7 @@ Set-ExecutionPolicy Unrestricted
 Import-Module ActiveDirectory
 
 # Variable Globale
-$Version = "Version 0.5.8"
+$Version = "Version 0.5.9"
 
 $Language       = ''
 $Selection      = 0
@@ -258,6 +258,9 @@ function Sel-Language
             0{$Selection=0; return 'French'}
             1{$Selection=0; return 'English'}
             2{$Selection=0; return 'Spanish'}
+            3{$Selection=0; return 'Italian'}
+            4{$Selection=0; return 'Portuguese'}
+            5{$Selection=0; return 'German'}
         }
     }
     
