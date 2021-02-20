@@ -1,4 +1,4 @@
-﻿# version 0.5.7
+﻿# version 0.5.8
 # Auteur : OYama_
 
 # Force le type d'execution
@@ -8,7 +8,7 @@ Set-ExecutionPolicy Unrestricted
 Import-Module ActiveDirectory
 
 # Variable Globale
-$Version = "Version 0.5.7"
+$Version = "Version 0.5.8"
 
 $Language       = ''
 $Selection      = 0
